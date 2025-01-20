@@ -1,0 +1,10 @@
+{
+  "services": {
+    "api": "localhost:3000"
+  },
+  "cache": {
+    "endpoint": "localhost:3001"
+  },
+  "isTest": true,
+  "subdomains": ["localhost", "local"]
+}

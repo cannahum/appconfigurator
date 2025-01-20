@@ -1,0 +1,8 @@
+{
+  "services": {
+    "api": "myapi.com/production"
+  },
+  "cache": {
+    "ttl": 1000
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "services": {
+    "api": "myapi.com/default"
+  },
+  "cache": {
+    "endpoint": "myredisendpoint.net",
+    "ttl": 3
+  },
+  "subdomains": ["app"]
+}
