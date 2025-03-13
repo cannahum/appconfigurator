@@ -30,6 +30,24 @@ func TestLoadConfig(t *testing.T) {
 	fmt.Println(currentTestFilePath)
 	configurationsDirectory := filepath.Join(currentTestFilePath, "..", "..", "..", "examples", "app", "configuration")
 
+	t.Run("loads the default configuration correctly", func(tt *testing.T) {
+		conf, err := appconfigurator.Load[TestConfig](configurationsDirectory, "")
+		assert.NoError(tt, err)
+		assert.Equal(tt, appconfigurator.Config[TestConfig]{
+			Environment: "",
+			Variables: TestConfig{
+				Services: Services{
+					API: "myapi.com/default",
+				},
+				Cache: Cache{
+					Endpoint: "myredisendpoint.net",
+					TTL:      3,
+				},
+				Subdomains: []string{"app"},
+			},
+		}, *conf)
+	})
+
 	t.Run("loads the local configuration correctly", func(tt *testing.T) {
 		conf, err := appconfigurator.Load[TestConfig](configurationsDirectory, "local")
 		assert.NoError(tt, err)
