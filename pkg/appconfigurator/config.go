@@ -48,6 +48,11 @@ func Load[T any](configurationDirectoryPath, environment string) (*Config[T], er
 		return nil, err
 	}
 
+	// Resolve `resolve:"..."` references (env var names, file paths) into values.
+	if err := Resolve(&variables); err != nil {
+		return nil, err
+	}
+
 	return &Config[T]{
 		Environment: environment,
 		Variables:   variables,
